@@ -69,6 +69,7 @@ section[id]{scroll-margin-top:80px}
 .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
 .btn-sm{min-height:42px;padding:0 18px;font-size:.95rem}
 .btn svg{width:18px;height:18px}
+.btn[disabled]{opacity:.6;cursor:wait;transform:none}
 
 .site-header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--header-bg);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:border-color .25s}
 .site-header.scrolled{border-color:var(--line)}
@@ -201,9 +202,17 @@ h2{font-size:clamp(2rem,3.8vw,3rem);font-weight:800;letter-spacing:-.04em}
 .contact .eyebrow{color:var(--spark)}
 .contact .sub{color:var(--band-muted);font-size:1.12rem;max-width:30em}
 .contact-copy{display:grid;gap:18px}
-.chans{display:grid;gap:12px;margin-top:10px}
+.book{display:grid;gap:14px;padding:22px;border-radius:18px;background:var(--accent);color:var(--accent-ink)}
+.book h3{font-size:1.35rem}
+.book p{opacity:.88;font-size:.98rem}
+.book .meta{display:flex;flex-wrap:wrap;gap:8px 16px;font-family:var(--mono);font-size:.76rem;letter-spacing:.03em;opacity:.92}
+.book .btn{justify-self:start;background:var(--accent-ink);color:var(--accent)}
+.book .btn:hover{transform:translateY(-2px)}
+.book small{font-size:.85rem;opacity:.85}
+.book small a{color:inherit}
+.chans{display:grid;gap:12px;margin-top:4px}
 .chan{display:flex;align-items:center;gap:14px;padding:14px 16px;border:1px solid var(--band-line);border-radius:16px;background:var(--band-surface)}
-.chan .ci{display:grid;place-items:center;width:42px;height:42px;border-radius:12px;background:var(--accent);color:var(--accent-ink);flex:none}
+.chan .ci{display:grid;place-items:center;width:42px;height:42px;border-radius:12px;background:var(--band-line);color:var(--band-ink);flex:none}
 .chan .ci svg{width:20px;height:20px}
 .chan .txt{flex:1;min-width:0}
 .chan small{display:block;color:var(--band-muted);font-size:.82rem}
@@ -235,6 +244,9 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--accent);
 .sent{display:none}
 .form-card.done form{display:none}
 .form-card.done .sent{display:grid;gap:14px}
+.sent .tickc{display:grid;place-items:center;width:52px;height:52px;border-radius:50%;background:var(--accent-soft);color:var(--ok)}
+.sent.fail .tickc{color:var(--err)}
+.sent .tickc svg{width:26px;height:26px}
 .sent pre{margin:0;white-space:pre-wrap;overflow-wrap:anywhere;font:inherit;font-size:.94rem;line-height:1.55;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:14px 16px;user-select:all;max-height:260px;overflow:auto}
 .sent p{color:var(--muted)}
 .sent .acts{display:flex;flex-wrap:wrap;gap:10px}
@@ -275,6 +287,7 @@ footer a:hover{color:var(--accent)}
   .row{grid-template-columns:minmax(0,1fr);gap:0}
   .form-card{padding:22px 18px}
   .cta-row .btn{flex:1 1 100%}
+  .book .btn{justify-self:stretch}
   .chan{flex-wrap:wrap}
   .copy{margin-left:56px}
 }
@@ -294,6 +307,7 @@ footer a:hover{color:var(--accent)}
       <path d="M29.5 30.5h5.5v-5.5" fill="none" style="stroke:var(--accent-ink)" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
       <circle cx="35" cy="13.5" r="3" style="fill:var(--spark)"/>
     </symbol>
+    <symbol id="cal" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 2v4M8 2v4M3 10h18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
   </defs>
 </svg>
 
@@ -310,9 +324,10 @@ footer a:hover{color:var(--accent)}
       <a href="#how">How it works</a>
       <a href="#work">Work</a>
       <a href="#about">About</a>
+      <a href="#contact">Contact</a>
     </nav>
     <div class="bar-actions">
-      <a class="btn btn-primary btn-sm" href="#contact">Book a free call</a>
+      <a class="btn btn-primary btn-sm book-link" href="https://cal.com/convertwithai/free-consultation" target="_blank" rel="noopener">Book a free call</a>
       <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="nav" aria-label="Menu"><span></span></button>
     </div>
   </div>
@@ -326,7 +341,7 @@ footer a:hover{color:var(--accent)}
         <h1>Turn <span class="from">busywork</span> into <span class="to">workflows that run themselves.</span></h1>
         <p class="lead">ConvertWithAI builds the AI workflows, agents and assistants your business actually needs, then trains your team and stays on to keep them running. You keep doing the work you started the business for.</p>
         <div class="cta-row">
-          <a class="btn btn-primary" href="#contact">Book a free call <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="btn btn-primary book-link" href="https://cal.com/convertwithai/free-consultation" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#cal"/></svg>Book a free 30-min call</a>
           <a class="btn btn-ghost" href="#services">See what I build</a>
         </div>
         <div class="terms">
@@ -405,7 +420,7 @@ footer a:hover{color:var(--accent)}
             <h3>Not sure where AI fits yet?</h3>
             <p>Start with AI consultancy. We look at how your business runs, find the tasks worth automating first, and leave you with a clear plan, whether or not you build with me.</p>
           </div>
-          <a class="btn btn-sm" href="#contact">Talk it through</a>
+          <a class="btn btn-sm book-link" href="https://cal.com/convertwithai/free-consultation" target="_blank" rel="noopener">Book a free call</a>
         </article>
       </div>
     </div>
@@ -419,7 +434,7 @@ footer a:hover{color:var(--accent)}
           <h2>From first call to running system</h2>
         </div>
         <ol class="proc">
-          <li><div><h3>Free discovery call</h3><p>You walk me through your week. I listen for the repetitive, time-heavy work that AI can take off your plate.</p></div></li>
+          <li><div><h3>Free discovery call</h3><p>Book 30 minutes and walk me through your week. I listen for the repetitive, time-heavy work that AI can take off your plate.</p></div></li>
           <li><div><h3>Map and design</h3><p>I map the workflow, choose the tools and show you exactly what will happen at each step before anything is built.</p></div></li>
           <li><div><h3>Build and launch</h3><p>I build it end to end, test it on your real data and launch it alongside how you work today.</p></div></li>
           <li><div><h3>Train and support</h3><p>Your team learns to use it, and I stay on to adjust and improve it as your business changes.</p></div></li>
@@ -524,7 +539,7 @@ footer a:hover{color:var(--accent)}
         <h2>Hi, I'm Warda Khan</h2>
         <p>I'm a <strong>software engineer and AI consultant</strong> in Richmond, Virginia, and I run ConvertWithAI on my own. That means the person on your discovery call is the person who builds your system and answers when you need a change.</p>
         <p>Before consulting I spent years building backend systems in Java, Python and the cloud. Today I build AI for small businesses that don't have a tech team, and I care about doing it responsibly: your data stays yours, and every system is explained in plain language.</p>
-        <div class="cta-row"><a class="btn btn-primary" href="#contact">Work with me</a></div>
+        <div class="cta-row"><a class="btn btn-primary book-link" href="https://cal.com/convertwithai/free-consultation" target="_blank" rel="noopener">Work with me</a></div>
       </div>
       <div class="creds">
         <div class="cred">
@@ -550,14 +565,21 @@ footer a:hover{color:var(--accent)}
   <section class="contact" id="contact">
     <div class="wrap contact-grid">
       <div class="contact-copy">
-        <p class="eyebrow">Book a free call</p>
+        <p class="eyebrow">Get in touch</p>
         <h2>Tell me what's eating your week</h2>
-        <p class="sub">Share a little about your business and the task you'd love to hand off. I'll reply within one business day to set up a free 30-minute call.</p>
+        <p class="sub">Pick a time for a free call, or send a quick message and I'll reply within one business day.</p>
+        <div class="book">
+          <h3>Free AI Consultation</h3>
+          <p>30 minutes on Google Meet. You'll leave with 2–3 practical ideas for your business, whether or not we work together.</p>
+          <div class="meta"><span>30 MIN</span><span>GOOGLE MEET</span><span>MON–FRI · EASTERN</span></div>
+          <a class="btn book-link" href="https://cal.com/convertwithai/free-consultation" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#cal"/></svg>Pick a time</a>
+          <small>Opens my calendar at <a href="https://cal.com/convertwithai/free-consultation" target="_blank" rel="noopener">cal.com/convertwithai</a></small>
+        </div>
         <div class="chans">
           <div class="chan">
             <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m2 7 10 6.5L22 7"/></svg></span>
-            <span class="txt"><small>Email</small><a class="val" id="email-val" href="mailto:engr.wardakhan@gmail.com">engr.wardakhan@gmail.com</a></span>
-            <button class="copy" type="button" data-copy="engr.wardakhan@gmail.com" aria-label="Copy email address">Copy</button>
+            <span class="txt"><small>Email</small><a class="val" href="mailto:warda@convertwithai.tech">warda@convertwithai.tech</a></span>
+            <button class="copy" type="button" data-copy="warda@convertwithai.tech" aria-label="Copy email address">Copy</button>
           </div>
           <div class="chan">
             <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg></span>
@@ -573,8 +595,8 @@ footer a:hover{color:var(--accent)}
 
       <div class="form-card" id="form-card">
         <form id="inquiry" novalidate>
-          <h3>Request your free call</h3>
-          <p class="note">Takes about a minute.</p>
+          <h3>Send me a message</h3>
+          <p class="note">Goes straight to my inbox. Takes about a minute.</p>
           <input type="text" name="_honey" id="f-honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
           <div class="row">
             <div class="field" id="g-name">
@@ -608,17 +630,22 @@ footer a:hover{color:var(--accent)}
             <textarea id="f-msg" name="message" required placeholder="e.g. I spend hours every week answering the same customer questions." aria-describedby="e-msg"></textarea>
             <div class="err" id="e-msg" role="alert"></div>
           </div>
-          <button class="btn btn-primary" type="submit" style="width:100%">Request my free call</button>
+          <button class="btn btn-primary" type="submit" id="submit-btn" style="width:100%">Send message</button>
         </form>
 
         <div class="sent" id="sent" role="status" aria-live="polite" tabindex="-1">
-          <h3 id="sent-title">Almost done</h3>
-          <p id="sent-copy">Tap <b>Open in email app</b> to send this to engr.wardakhan@gmail.com, or copy it into any email. I'll reply within one business day.</p>
-          <pre id="sent-text"></pre>
+          <div class="tickc">
+            <svg id="i-ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>
+            <svg id="i-warn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" hidden><path d="M12 7v6M12 17h.01"/></svg>
+          </div>
+          <h3 id="sent-title">Message sent</h3>
+          <p id="sent-copy"></p>
+          <pre id="sent-text" hidden></pre>
           <div class="acts">
-            <a class="btn btn-primary btn-sm" id="mail-msg" href="#">Open in email app</a>
-            <button class="btn btn-ghost btn-sm" type="button" id="copy-msg">Copy message</button>
-            <button class="btn btn-ghost btn-sm" type="button" id="edit-msg">Edit message</button>
+            <a class="btn btn-primary btn-sm" id="mail-msg" href="#" hidden>Open in email app</a>
+            <button class="btn btn-ghost btn-sm" type="button" id="copy-msg" hidden>Copy message</button>
+            <a class="btn btn-primary btn-sm book-link" id="book-after" href="https://cal.com/convertwithai/free-consultation" target="_blank" rel="noopener">Book a free call too</a>
+            <button class="btn btn-ghost btn-sm" type="button" id="edit-msg">Send another message</button>
           </div>
         </div>
       </div>
@@ -633,20 +660,39 @@ footer a:hover{color:var(--accent)}
       <span class="word">Convert<b>With</b>AI</span>
     </a>
     <div class="links">
-      <a href="#services">Services</a><a href="#how">How it works</a><a href="#work">Work</a><a href="#about">About</a><a href="#contact">Contact</a>
+      <a href="#services">Services</a><a href="#how">How it works</a><a href="#work">Work</a><a href="#about">About</a><a href="mailto:warda@convertwithai.tech">warda@convertwithai.tech</a>
     </div>
     <p>&copy; 2026 ConvertWithAI · Richmond, Virginia · Serving small businesses across the US</p>
   </div>
 </footer>
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"ConvertWithAI","url":"https://convertwithai.tech/","description":"AI workflows, AI agents, document assistants and AI training for US small businesses.","founder":{"@type":"Person","name":"Warda Khan"},"email":"engr.wardakhan@gmail.com","telephone":"+1-256-836-9607","areaServed":"US","address":{"@type":"PostalAddress","addressLocality":"Richmond","addressRegion":"VA","addressCountry":"US"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"ConvertWithAI","url":"https://convertwithai.tech/","description":"AI workflows, AI agents, document assistants and AI training for US small businesses.","founder":{"@type":"Person","name":"Warda Khan"},"email":"warda@convertwithai.tech","telephone":"+1-256-836-9607","areaServed":"US","address":{"@type":"PostalAddress","addressLocality":"Richmond","addressRegion":"VA","addressCountry":"US"}}</script>
+
+<script>
+/* Cal.com popup: "Book" buttons open the booking calendar over the page; if the script can't load, the links open cal.com in a new tab. */
+(function (C, A, L) { var p = function (a, ar) { a.q.push(ar); }; var d = C.document; C.Cal = C.Cal || function () { var cal = C.Cal; var ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { var api = function () { p(api, arguments); }; var namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+Cal("init", "free-consultation", { origin: "https://cal.com" });
+Cal.ns["free-consultation"]("ui", { hideEventTypeDetails: false, layout: "month_view" });
+</script>
 
 <script>
 (function(){
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var $ = function(s,r){return (r||document).querySelector(s)};
   var $$ = function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
-  var EMAIL = 'engr.wardakhan@gmail.com';
+  var EMAIL = 'warda@convertwithai.tech';
+  var FORM_ENDPOINT = 'https://formsubmit.co/ajax/' + EMAIL;
+
+  /* Booking buttons: open the Cal.com popup when it has loaded, otherwise follow the link */
+  $$('.book-link').forEach(function(a){
+    a.addEventListener('click', function(e){
+      if (window.Cal && window.Cal.loaded && window.Cal.ns && window.Cal.ns['free-consultation']) {
+        e.preventDefault();
+        try { window.Cal.ns['free-consultation']('modal', { calLink: 'convertwithai/free-consultation', config: { layout: 'month_view' } }); }
+        catch (err) { window.open(a.href, '_blank', 'noopener'); }
+      }
+    });
+  });
 
   var header = $('.site-header');
   function onScroll(){ header.classList.toggle('scrolled', (window.scrollY||0) > 8); }
@@ -721,7 +767,10 @@ footer a:hover{color:var(--accent)}
   }
   $$('[data-copy]').forEach(function(b){ b.addEventListener('click', function(){ copyText(b.getAttribute('data-copy'), b, 'Copy'); }); });
 
-  var form = $('#inquiry'), card = $('#form-card'), sentText = $('#sent-text'), message = '';
+  /* Contact form: validate, then email the message to warda@convertwithai.tech */
+  var form = $('#inquiry'), card = $('#form-card'), sent = $('#sent'), sentText = $('#sent-text'), submitBtn = $('#submit-btn');
+  var mailBtn = $('#mail-msg'), copyBtn = $('#copy-msg'), againBtn = $('#edit-msg');
+  var message = '', sending = false;
   var rules = {
     name:{el:$('#f-name'), g:$('#g-name'), e:$('#e-name'), check:function(v){ return v.trim() ? '' : 'Enter your name.'; }},
     email:{el:$('#f-email'), g:$('#g-email'), e:$('#e-email'), check:function(v){ v = v.trim(); if(!v) return 'Enter your email.'; return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v) ? '' : 'Enter a valid email, like name@business.com.'; }},
@@ -730,24 +779,55 @@ footer a:hover{color:var(--accent)}
   function validate(k){ var r = rules[k], m = r.check(r.el.value); r.e.textContent = m; r.g.classList.toggle('bad', !!m); r.el.setAttribute('aria-invalid', m ? 'true' : 'false'); return !m; }
   Object.keys(rules).forEach(function(k){ rules[k].el.addEventListener('input', function(){ if(rules[k].g.classList.contains('bad')) validate(k); }); });
 
+  function showResult(ok, name, email){
+    card.classList.add('done'); sent.classList.toggle('fail', !ok);
+    $('#i-ok').hidden = !ok; $('#i-warn').hidden = ok;
+    $('#sent-title').textContent = ok ? 'Message sent' : "Your message didn't go through";
+    $('#sent-copy').textContent = ok
+      ? 'Thanks, ' + name.split(' ')[0] + '. I got your message and will reply to ' + email + ' within one business day.'
+      : 'Nothing is lost. Open it in your email app or copy it and send it to ' + EMAIL + '.';
+    sentText.textContent = message; sentText.hidden = ok;
+    mailBtn.hidden = ok; copyBtn.hidden = ok;
+    againBtn.textContent = ok ? 'Send another message' : 'Edit message';
+    sent.focus({preventScroll:true});
+  }
+
   form.addEventListener('submit', function(ev){
     ev.preventDefault();
+    if(sending) return;
     var first = null;
     Object.keys(rules).forEach(function(k){ if(!validate(k) && !first) first = rules[k].el; });
     if(first){ first.focus(); return; }
     if($('#f-honey').value) return;
-    var name = rules.name.el.value.trim(), email = rules.email.el.value.trim(), biz = $('#f-biz').value.trim();
+    var name = rules.name.el.value.trim(), email = rules.email.el.value.trim(), biz = $('#f-biz').value.trim(), body = rules.msg.el.value.trim();
     var picks = $$('.pick input:checked').map(function(i){ return i.value; });
-    var subject = 'Free call request from ' + name + (biz ? ' (' + biz + ')' : '');
-    var body = rules.msg.el.value.trim() + '\n\n' + (picks.length ? 'Interested in: ' + picks.join(', ') + '\n' : '') + 'Name: ' + name + '\n' + (biz ? 'Business: ' + biz + '\n' : '') + 'Email: ' + email;
-    message = 'Subject: ' + subject + '\n\n' + body;
-    $('#mail-msg').href = 'mailto:' + EMAIL + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-    sentText.textContent = message;
-    card.classList.add('done');
-    $('#sent').focus({preventScroll:true});
+    var subject = 'New website inquiry from ' + name + (biz ? ' (' + biz + ')' : '');
+    var plain = body + '\n\n' + (picks.length ? 'Interested in: ' + picks.join(', ') + '\n' : '') + 'Name: ' + name + '\n' + (biz ? 'Business: ' + biz + '\n' : '') + 'Email: ' + email;
+    message = 'Subject: ' + subject + '\n\n' + plain;
+    mailBtn.href = 'mailto:' + EMAIL + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(plain);
+
+    sending = true; submitBtn.disabled = true; submitBtn.textContent = 'Sending…';
+    var ctl = ('AbortController' in window) ? new AbortController() : null;
+    var timer = setTimeout(function(){ if(ctl) ctl.abort(); }, 15000);
+    function finish(ok){
+      clearTimeout(timer); sending = false; submitBtn.disabled = false; submitBtn.textContent = 'Send message';
+      showResult(ok, name, email);
+      if(ok) form.reset();
+    }
+    fetch(FORM_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        _subject: subject, _template: 'table', _captcha: 'false', _replyto: email,
+        Name: name, Email: email, Business: biz || '—', 'Interested in': picks.join(', ') || '—', Message: body
+      }),
+      signal: ctl ? ctl.signal : undefined
+    })
+    .then(function(r){ return r.json().then(function(d){ finish(r.ok && d && (d.success === true || d.success === 'true')); }); })
+    .catch(function(){ finish(false); });
   });
-  $('#copy-msg').addEventListener('click', function(){ copyText(message, this, 'Copy message'); });
-  $('#edit-msg').addEventListener('click', function(){ card.classList.remove('done'); rules.msg.el.focus(); });
+  copyBtn.addEventListener('click', function(){ copyText(message, this, 'Copy message'); });
+  againBtn.addEventListener('click', function(){ var failed = sent.classList.contains('fail'); card.classList.remove('done'); (failed ? rules.msg.el : rules.name.el).focus(); });
 })();
 </script>
 
