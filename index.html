@@ -1,0 +1,755 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ConvertWithAI | AI automation for small businesses</title>
+<meta name="description" content="ConvertWithAI builds AI workflows, AI agents and document assistants for US small businesses. No setup fee: a monthly plan with training and support included.">
+<meta property="og:title" content="ConvertWithAI | AI automation for small businesses">
+<meta property="og:description" content="Turn busywork into workflows that run themselves. No setup fee.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://convertwithai.tech/">
+<link rel="canonical" href="https://convertwithai.tech/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='12' fill='%232E46F5'/%3E%3Cpath d='M33 15.5A12 12 0 1 0 34.5 30' fill='none' stroke='%23fff' stroke-width='4.2' stroke-linecap='round'/%3E%3Cpath d='M29.5 30.5h5.5v-5.5' fill='none' stroke='%23fff' stroke-width='4.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='35' cy='13.5' r='3' fill='%23E8661F'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap">
+<style>
+:root{
+  --display:'Bricolage Grotesque','Instrument Sans',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+  --body:'Instrument Sans',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --bg:#F5F6FA; --surface:#FFFFFF; --soft:#E9ECFA; --ink:#141827; --muted:#545B71; --line:#DDE1EC;
+  --accent:#2E46F5; --accent-hover:#1F35D6; --accent-ink:#FFFFFF; --accent-soft:#E3E7FF;
+  --spark:#E8661F; --spark-soft:#FDEBDF;
+  --band:#141827; --band-ink:#EEF0F7; --band-muted:#A9B0C6; --band-line:#2A3047; --band-surface:#1C2133;
+  --header-bg:rgba(245,246,250,.86);
+  --err:#C0271A; --ok:#11803F;
+  --shadow:0 1px 2px rgba(20,24,39,.05),0 22px 48px -24px rgba(20,24,39,.30);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0D1018; --surface:#151A26; --soft:#18203A; --ink:#EEF0F7; --muted:#A3AABF; --line:#262D40;
+  --accent:#8292FF; --accent-hover:#A1ADFF; --accent-ink:#0D1018; --accent-soft:#1D2550;
+  --spark:#FF9A5C; --spark-soft:#3A2418;
+  --band:#090C13; --band-ink:#EEF0F7; --band-muted:#A3AABF; --band-line:#232A3D; --band-surface:#131826;
+  --header-bg:rgba(13,16,24,.86);
+  --err:#FF8A80; --ok:#6FDB9A;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 22px 48px -24px rgba(0,0,0,.7);
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0D1018; --surface:#151A26; --soft:#18203A; --ink:#EEF0F7; --muted:#A3AABF; --line:#262D40;
+  --accent:#8292FF; --accent-hover:#A1ADFF; --accent-ink:#0D1018; --accent-soft:#1D2550;
+  --spark:#FF9A5C; --spark-soft:#3A2418;
+  --band:#090C13; --band-ink:#EEF0F7; --band-muted:#A3AABF; --band-line:#232A3D; --band-surface:#131826;
+  --header-bg:rgba(13,16,24,.86);
+  --err:#FF8A80; --ok:#6FDB9A;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 22px 48px -24px rgba(0,0,0,.7);
+  color-scheme:dark}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:1.0625rem;line-height:1.65;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--header-bg)}
+h1,h2,h3,p,ul,ol{margin:0}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;line-height:1.08;letter-spacing:-.025em}
+a{color:inherit}
+svg{display:block}
+[hidden]{display:none!important}
+section[id]{scroll-margin-top:80px}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1180px;margin-inline:auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.skip{position:absolute;left:12px;top:-60px;z-index:100;background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:10px;font-weight:600;text-decoration:none}
+.skip:focus{top:calc(10px + env(safe-area-inset-top,0px))}
+.eyebrow{font-family:var(--mono);font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;padding:0 24px;border-radius:12px;border:2px solid transparent;font:inherit;font-weight:700;font-size:1rem;text-decoration:none;cursor:pointer;transition:background-color .2s,color .2s,border-color .2s,transform .2s}
+.btn-primary{background:var(--accent);color:var(--accent-ink)}
+.btn-primary:hover{background:var(--accent-hover);transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+.btn-sm{min-height:42px;padding:0 18px;font-size:.95rem}
+.btn svg{width:18px;height:18px}
+
+.site-header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--header-bg);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:border-color .25s}
+.site-header.scrolled{border-color:var(--line)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:16px;height:70px}
+.brand{display:inline-flex;align-items:center;gap:11px;text-decoration:none;color:var(--ink)}
+.mark{width:38px;height:38px;flex:none}
+.word{font-family:var(--display);font-size:1.4rem;font-weight:800;letter-spacing:-.03em;line-height:1}
+.word b{color:var(--accent);font-weight:800}
+.nav{display:flex;align-items:center;gap:2px}
+.nav a{padding:9px 13px;border-radius:10px;text-decoration:none;font-weight:600;font-size:.96rem;color:var(--muted);transition:color .2s,background-color .2s}
+.nav a:hover,.nav a.active{color:var(--ink);background:var(--soft)}
+.bar-actions{display:flex;align-items:center;gap:10px}
+.burger{display:none;width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer;align-items:center;justify-content:center}
+.burger span,.burger span::before,.burger span::after{display:block;width:18px;height:2px;background:currentColor;border-radius:2px;transition:transform .3s}
+.burger span{position:relative}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0}
+.burger span::before{top:-6px}.burger span::after{top:6px}
+.burger[aria-expanded="true"] span{background:transparent}
+.burger[aria-expanded="true"] span::before{transform:translateY(6px) rotate(45deg)}
+.burger[aria-expanded="true"] span::after{transform:translateY(-6px) rotate(-45deg)}
+
+.hero{padding-block:56px 88px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:44px 44px;opacity:.45;-webkit-mask-image:radial-gradient(ellipse at 75% 30%,#000 0,transparent 65%);mask-image:radial-gradient(ellipse at 75% 30%,#000 0,transparent 65%);pointer-events:none}
+.hero-grid{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.02fr);gap:56px;align-items:center}
+.hero-copy{display:grid;gap:22px;justify-items:start}
+.hero h1{font-size:clamp(2.5rem,5.4vw,4.4rem);font-weight:800;letter-spacing:-.045em;line-height:1.02}
+.hero h1 .from{color:var(--spark)}
+.hero h1 .to{color:var(--accent)}
+.lead{max-width:33em;font-size:clamp(1.07rem,1.5vw,1.22rem);color:var(--muted)}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:6px}
+.terms{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:999px;background:var(--surface);border:1px solid var(--line);font-size:.88rem;font-weight:600;color:var(--ink)}
+.chip svg{width:15px;height:15px;color:var(--ok)}
+
+.conv{background:var(--surface);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);overflow:hidden}
+.conv-top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:16px 20px;border-bottom:1px solid var(--line)}
+.conv-top span{font-family:var(--display);font-weight:700;font-size:1.02rem}
+.conv-top em{font-style:normal;font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:var(--soft);padding:4px 10px;border-radius:999px}
+.tabs{display:flex;gap:6px;padding:14px 20px 0;overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:none;padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--muted);font:inherit;font-size:.9rem;font-weight:600;cursor:pointer;transition:all .2s}
+.tab:hover{color:var(--ink);border-color:var(--ink)}
+.tab[aria-selected="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.conv-body{display:grid;grid-template-columns:minmax(0,1fr) 34px minmax(0,1fr);gap:0;padding:18px 20px 20px;align-items:stretch}
+.lane h3{font-family:var(--mono);font-size:.74rem;letter-spacing:.07em;text-transform:uppercase;font-weight:600;margin-bottom:10px;display:flex;align-items:center;gap:7px}
+.lane.before h3{color:var(--spark)}
+.lane.after h3{color:var(--accent)}
+.lane h3 i{width:8px;height:8px;border-radius:50%;background:currentColor;display:block}
+.steps{list-style:none;padding:0;display:grid;gap:7px}
+.steps li{position:relative;padding:9px 11px;border-radius:10px;font-size:.9rem;line-height:1.4}
+.before .steps li{background:var(--spark-soft);color:var(--ink)}
+.after .steps li{background:var(--accent-soft);color:var(--ink);opacity:0;transform:translateX(-8px);transition:opacity .4s,transform .4s}
+.after .steps li.on{opacity:1;transform:none}
+.after .steps li b{font-family:var(--mono);font-size:.7rem;font-weight:600;letter-spacing:.04em;color:var(--accent);display:block;text-transform:uppercase}
+.arrow{display:grid;place-items:center;color:var(--muted)}
+.arrow svg{width:22px;height:22px}
+.conv-foot{display:flex;align-items:center;gap:12px;padding:14px 20px;background:var(--soft);font-size:.92rem}
+.conv-foot svg{width:20px;height:20px;color:var(--accent);flex:none}
+.conv-foot b{font-weight:700}
+
+section.block{padding-block:96px}
+.alt{background:var(--surface);border-block:1px solid var(--line)}
+.sec-head{display:grid;gap:14px;max-width:42rem;margin-bottom:48px}
+h2{font-size:clamp(2rem,3.8vw,3rem);font-weight:800;letter-spacing:-.04em}
+.sec-head p{color:var(--muted);font-size:1.12rem}
+
+.svc-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.svc{display:flex;flex-direction:column;gap:12px;padding:26px 24px 22px;background:var(--surface);border:1px solid var(--line);border-radius:18px;transition:border-color .25s,transform .25s}
+.svc:hover{border-color:var(--accent);transform:translateY(-4px)}
+.svc .ico{display:grid;place-items:center;width:48px;height:48px;border-radius:13px;background:var(--accent-soft);color:var(--accent)}
+.svc .ico svg{width:24px;height:24px}
+.svc h3{font-size:1.25rem}
+.svc p{color:var(--muted);font-size:.99rem;line-height:1.6;flex:1}
+.svc .ex{font-family:var(--mono);font-size:.76rem;color:var(--muted);border-top:1px dashed var(--line);padding-top:12px;line-height:1.5}
+.svc.wide{grid-column:span 3;flex-direction:row;align-items:center;gap:22px;background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.svc.wide:hover{transform:none}
+.svc.wide .ico{background:var(--accent);color:var(--accent-ink);flex:none}
+.svc.wide p{color:var(--bg);opacity:.78;flex:1;min-width:0}
+.svc.wide .btn{flex:none;background:var(--bg);color:var(--ink)}
+.svc.wide .btn:hover{background:var(--accent-soft)}
+.svc.wide>div{min-width:0;flex:1;display:grid;gap:6px}
+
+.proc-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:48px;align-items:start}
+.proc{list-style:none;padding:0;display:grid;gap:0;counter-reset:s}
+.proc li{position:relative;display:grid;grid-template-columns:52px minmax(0,1fr);gap:18px;padding-bottom:30px}
+.proc li::before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:52px;height:52px;border-radius:50%;border:2px solid var(--accent);color:var(--accent);background:var(--surface);font-family:var(--display);font-weight:800;font-size:1.2rem;position:relative;z-index:1}
+.proc li::after{content:"";position:absolute;left:25px;top:52px;bottom:0;width:2px;background:var(--line)}
+.proc li:last-child{padding-bottom:0}
+.proc li:last-child::after{display:none}
+.proc h3{font-size:1.22rem;padding-top:11px}
+.proc p{color:var(--muted);margin-top:6px;max-width:34em}
+.price{position:sticky;top:96px;background:var(--bg);border:1px solid var(--line);border-radius:20px;padding:28px 26px;display:grid;gap:18px}
+.price .eyebrow{color:var(--spark)}
+.price h3{font-size:1.5rem}
+.zero{display:flex;align-items:baseline;gap:10px;font-family:var(--display);font-weight:800}
+.zero big{font-size:3.6rem;letter-spacing:-.05em;line-height:1;color:var(--accent)}
+.zero span{font-size:1.05rem;color:var(--muted);font-weight:600;font-family:var(--body)}
+.incl{list-style:none;padding:0;display:grid;gap:10px}
+.incl li{display:flex;gap:10px;align-items:flex-start;font-size:.98rem}
+.incl svg{width:20px;height:20px;color:var(--ok);flex:none;margin-top:3px}
+.price small{color:var(--muted);font-size:.88rem;line-height:1.5}
+
+.work-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.case{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.case-art{height:150px;background:var(--soft);position:relative;display:grid;place-items:center;border-bottom:1px solid var(--line)}
+.case-art svg{width:100%;height:100%}
+.case-body{display:flex;flex-direction:column;gap:12px;padding:22px 22px 24px;flex:1}
+.tag{align-self:flex-start;font-family:var(--mono);font-size:.7rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:4px 9px;border-radius:6px;background:var(--accent-soft);color:var(--accent)}
+.case h3{font-size:1.3rem}
+.case p{color:var(--muted);font-size:.98rem;flex:1}
+.stack{display:flex;flex-wrap:wrap;gap:6px}
+.stack span{font-family:var(--mono);font-size:.72rem;padding:3px 8px;border-radius:6px;border:1px solid var(--line);color:var(--muted)}
+
+.about-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:start}
+.about-copy{display:grid;gap:18px}
+.about-copy p{color:var(--muted);font-size:1.1rem;max-width:34em}
+.about-copy p strong{color:var(--ink)}
+.creds{display:grid;gap:12px}
+.cred{display:flex;gap:16px;align-items:flex-start;padding:18px 20px;border-radius:16px;background:var(--surface);border:1px solid var(--line)}
+.cred .ci{display:grid;place-items:center;width:42px;height:42px;border-radius:12px;background:var(--accent-soft);color:var(--accent);flex:none}
+.cred .ci svg{width:22px;height:22px}
+.cred b{display:block;font-size:1.02rem}
+.cred span{color:var(--muted);font-size:.95rem;line-height:1.5}
+.local{display:flex;gap:16px;align-items:flex-start;padding:18px 20px;border-radius:16px;background:var(--spark-soft);border:1px solid transparent}
+.local .ci{background:var(--spark);color:#fff}
+
+.contact{background:var(--band);color:var(--band-ink);padding-block:96px}
+.contact-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:56px;align-items:start}
+.contact h2{color:var(--band-ink)}
+.contact .eyebrow{color:var(--spark)}
+.contact .sub{color:var(--band-muted);font-size:1.12rem;max-width:30em}
+.contact-copy{display:grid;gap:18px}
+.chans{display:grid;gap:12px;margin-top:10px}
+.chan{display:flex;align-items:center;gap:14px;padding:14px 16px;border:1px solid var(--band-line);border-radius:16px;background:var(--band-surface)}
+.chan .ci{display:grid;place-items:center;width:42px;height:42px;border-radius:12px;background:var(--accent);color:var(--accent-ink);flex:none}
+.chan .ci svg{width:20px;height:20px}
+.chan .txt{flex:1;min-width:0}
+.chan small{display:block;color:var(--band-muted);font-size:.82rem}
+.chan .val{display:block;font-weight:700;font-size:1.04rem;color:var(--band-ink);overflow-wrap:anywhere;user-select:all;text-decoration:none}
+.copy{flex:none;min-height:38px;padding:0 14px;border-radius:999px;border:1px solid var(--band-line);background:transparent;color:var(--band-ink);font:inherit;font-weight:600;font-size:.86rem;cursor:pointer}
+.copy:hover{border-color:var(--accent)}
+.copy.ok{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+
+.form-card{background:var(--surface);color:var(--ink);border-radius:22px;padding:30px}
+.form-card h3{font-size:1.4rem;margin-bottom:6px}
+.form-card .note{color:var(--muted);font-size:.95rem;margin-bottom:20px}
+.row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px}
+.field{display:grid;gap:6px;margin-bottom:16px}
+label{font-weight:700;font-size:.93rem}
+label .opt{font-weight:500;color:var(--muted)}
+input,textarea,select{width:100%;font:inherit;font-size:1rem;color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;transition:border-color .2s,box-shadow .2s}
+textarea{min-height:120px;resize:vertical;line-height:1.55}
+input::placeholder,textarea::placeholder{color:var(--muted);opacity:.75}
+input:focus,textarea:focus,select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px var(--accent-soft)}
+.field.bad input,.field.bad textarea{border-color:var(--err)}
+.err{font-size:.86rem;font-weight:600;color:var(--err)}
+.err:empty{display:none}
+.picks{display:flex;flex-wrap:wrap;gap:8px}
+.pick{position:relative}
+.pick input{position:absolute;opacity:0;width:1px;height:1px}
+.pick span{display:inline-block;padding:7px 13px;border-radius:999px;border:1.5px solid var(--line);font-size:.9rem;font-weight:600;color:var(--muted);cursor:pointer;transition:all .2s}
+.pick input:checked+span{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.pick input:focus-visible+span{outline:3px solid var(--accent);outline-offset:2px}
+.sent{display:none}
+.form-card.done form{display:none}
+.form-card.done .sent{display:grid;gap:14px}
+.sent pre{margin:0;white-space:pre-wrap;overflow-wrap:anywhere;font:inherit;font-size:.94rem;line-height:1.55;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:14px 16px;user-select:all;max-height:260px;overflow:auto}
+.sent p{color:var(--muted)}
+.sent .acts{display:flex;flex-wrap:wrap;gap:10px}
+.sent .acts .btn-ghost{color:var(--ink)}
+
+footer{background:var(--band);color:var(--band-muted);border-top:1px solid var(--band-line);padding-block:36px}
+.foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 28px;font-size:.93rem}
+footer .brand{color:var(--band-ink)}
+footer .links{display:flex;flex-wrap:wrap;gap:6px 22px}
+footer a{text-decoration:none;color:var(--band-ink)}
+footer a:hover{color:var(--accent)}
+
+.hero-copy>*{animation:rise .7s cubic-bezier(.2,.8,.2,1) both}
+.hero-copy>*:nth-child(2){animation-delay:.06s}.hero-copy>*:nth-child(3){animation-delay:.12s}.hero-copy>*:nth-child(4){animation-delay:.18s}.hero-copy>*:nth-child(5){animation-delay:.24s}
+.conv{animation:rise .8s .15s cubic-bezier(.2,.8,.2,1) both}
+@keyframes rise{from{opacity:0;transform:translateY(16px)}}
+
+@media (max-width:1000px){
+  .hero-grid,.about-grid,.contact-grid,.proc-grid{grid-template-columns:minmax(0,1fr);gap:44px}
+  .svc-grid,.work-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .svc.wide{grid-column:span 2}
+  .price{position:static}
+}
+@media (max-width:820px){
+  .burger{display:inline-flex}
+  .nav{position:absolute;left:0;right:0;top:100%;flex-direction:column;align-items:stretch;padding:10px max(20px,env(safe-area-inset-right,0px)) 16px max(20px,env(safe-area-inset-left,0px));background:var(--bg);border-bottom:1px solid var(--line);visibility:hidden;opacity:0;transform:translateY(-6px);transition:opacity .2s,transform .2s,visibility .2s}
+  .nav.open{visibility:visible;opacity:1;transform:none}
+  .nav a{padding:13px 12px;font-size:1.05rem}
+  .bar-actions .btn-sm{display:none}
+  section.block,.contact{padding-block:72px}
+  .hero{padding-block:36px 72px}
+}
+@media (max-width:640px){
+  .svc-grid,.work-grid{grid-template-columns:minmax(0,1fr)}
+  .svc.wide{grid-column:auto;flex-direction:column;align-items:flex-start}
+  .conv-body{grid-template-columns:minmax(0,1fr);gap:10px}
+  .arrow svg{transform:rotate(90deg)}
+  .row{grid-template-columns:minmax(0,1fr);gap:0}
+  .form-card{padding:22px 18px}
+  .cta-row .btn{flex:1 1 100%}
+  .chan{flex-wrap:wrap}
+  .copy{margin-left:56px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms!important;animation-delay:0ms!important;transition-duration:.001ms!important}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="mark" viewBox="0 0 48 48">
+      <rect width="48" height="48" rx="12" style="fill:var(--accent)"/>
+      <path d="M33 15.5A12 12 0 1 0 34.5 30" fill="none" style="stroke:var(--accent-ink)" stroke-width="4.2" stroke-linecap="round"/>
+      <path d="M29.5 30.5h5.5v-5.5" fill="none" style="stroke:var(--accent-ink)" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="35" cy="13.5" r="3" style="fill:var(--spark)"/>
+    </symbol>
+  </defs>
+</svg>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header" id="top">
+  <div class="wrap bar">
+    <a class="brand" href="#home" aria-label="ConvertWithAI, back to top">
+      <svg class="mark" aria-hidden="true"><use href="#mark"/></svg>
+      <span class="word">Convert<b>With</b>AI</span>
+    </a>
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="#services">Services</a>
+      <a href="#how">How it works</a>
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+    </nav>
+    <div class="bar-actions">
+      <a class="btn btn-primary btn-sm" href="#contact">Book a free call</a>
+      <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="nav" aria-label="Menu"><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero" id="home">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">AI automation for US small businesses</p>
+        <h1>Turn <span class="from">busywork</span> into <span class="to">workflows that run themselves.</span></h1>
+        <p class="lead">ConvertWithAI builds the AI workflows, agents and assistants your business actually needs, then trains your team and stays on to keep them running. You keep doing the work you started the business for.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#contact">Book a free call <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="btn btn-ghost" href="#services">See what I build</a>
+        </div>
+        <div class="terms">
+          <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>No setup fee</span>
+          <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>Team training included</span>
+          <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>Ongoing support</span>
+        </div>
+      </div>
+
+      <div class="conv" id="conv" aria-label="Workflow converter">
+        <div class="conv-top"><span>See it for your business</span><em>Example workflows</em></div>
+        <div class="tabs" role="tablist" aria-label="Business type" id="tabs"></div>
+        <div class="conv-body">
+          <div class="lane before">
+            <h3><i></i>Today, by hand</h3>
+            <ol class="steps" id="before"></ol>
+          </div>
+          <div class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+          <div class="lane after">
+            <h3><i></i>With AI</h3>
+            <ol class="steps" id="after" aria-live="polite"></ol>
+          </div>
+        </div>
+        <div class="conv-foot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><p id="human"></p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block alt" id="services">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Services</p>
+        <h2>What I build for small businesses</h2>
+        <p>Every project starts with the work that eats your week. Then I pick the AI approach that fits it, not the other way around.</p>
+      </div>
+      <div class="svc-grid">
+        <article class="svc">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="6" height="6" rx="1.5"/><rect x="15" y="15" width="6" height="6" rx="1.5"/><path d="M9 6h5a3 3 0 0 1 3 3v6"/><path d="m14.5 12.5 2.5 2.5 2.5-2.5"/></svg></div>
+          <h3>AI workflows &amp; automation</h3>
+          <p>Connect the apps you already use so leads, follow-ups, invoices and reports move on their own.</p>
+          <p class="ex">e.g. new lead → AI qualifies it → CRM updated → follow-up sent</p>
+        </article>
+        <article class="svc">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="7" width="16" height="12" rx="3"/><path d="M12 3v4M9 12h.01M15 12h.01M9.5 15.5h5"/></svg></div>
+          <h3>AI agents &amp; voice agents</h3>
+          <p>Agents that answer customers, book appointments and handle calls after hours, with clear hand-offs to you.</p>
+          <p class="ex">e.g. a voice agent that books jobs while you're on site</p>
+        </article>
+        <article class="svc">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><circle cx="11" cy="14" r="2.5"/><path d="m13 16 2 2"/></svg></div>
+          <h3>Ask-your-documents assistants</h3>
+          <p>RAG applications that answer questions from your contracts, SOPs and policies, with the source shown.</p>
+          <p class="ex">e.g. "What's our cancellation clause for this client?"</p>
+        </article>
+        <article class="svc">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></div>
+          <h3>AI content creation</h3>
+          <p>Posts, reels, whiteboard videos and ad creative produced with AI and kept in your brand voice.</p>
+          <p class="ex">e.g. a month of social posts drafted from one call</p>
+        </article>
+        <article class="svc">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="3"/><circle cx="12" cy="11" r="3"/><path d="M7.5 19a5 5 0 0 1 9 0"/></svg></div>
+          <h3>Custom business avatars</h3>
+          <p>An AI presenter for explainer videos, product walk-throughs and ads, so you don't have to film everything yourself.</p>
+          <p class="ex">e.g. a welcome video for every new client</p>
+        </article>
+        <article class="svc">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></div>
+          <h3>AI adoption training</h3>
+          <p>Hands-on sessions that get your team using AI tools safely and confidently in their daily work.</p>
+          <p class="ex">e.g. a half-day workshop on AI for your front desk</p>
+        </article>
+        <article class="svc wide">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 9h8M8 13h5"/></svg></div>
+          <div>
+            <h3>Not sure where AI fits yet?</h3>
+            <p>Start with AI consultancy. We look at how your business runs, find the tasks worth automating first, and leave you with a clear plan, whether or not you build with me.</p>
+          </div>
+          <a class="btn btn-sm" href="#contact">Talk it through</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="how">
+    <div class="wrap proc-grid">
+      <div>
+        <div class="sec-head">
+          <p class="eyebrow">How it works</p>
+          <h2>From first call to running system</h2>
+        </div>
+        <ol class="proc">
+          <li><div><h3>Free discovery call</h3><p>You walk me through your week. I listen for the repetitive, time-heavy work that AI can take off your plate.</p></div></li>
+          <li><div><h3>Map and design</h3><p>I map the workflow, choose the tools and show you exactly what will happen at each step before anything is built.</p></div></li>
+          <li><div><h3>Build and launch</h3><p>I build it end to end, test it on your real data and launch it alongside how you work today.</p></div></li>
+          <li><div><h3>Train and support</h3><p>Your team learns to use it, and I stay on to adjust and improve it as your business changes.</p></div></li>
+        </ol>
+      </div>
+      <aside class="price" aria-label="Pricing">
+        <p class="eyebrow">Pricing</p>
+        <h3>Pay for results, not setup</h3>
+        <div class="zero"><big>$0</big><span>build &amp; setup fee</span></div>
+        <ul class="incl">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>One monthly maintenance plan</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>AI tool running costs, passed through</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>Employee training included</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>Post-launch support and adjustments</li>
+        </ul>
+        <a class="btn btn-primary" href="#contact">Get a quote</a>
+        <small>Your monthly plan depends on what we build. You'll get a clear number after the discovery call.</small>
+      </aside>
+    </div>
+  </section>
+
+  <section class="block alt" id="work">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Work</p>
+        <h2>Things I've built</h2>
+        <p>Real systems, running on real data. Ask me for a walk-through on our call.</p>
+      </div>
+      <div class="work-grid">
+        <article class="case">
+          <div class="case-art" aria-hidden="true">
+            <svg viewBox="0 0 300 150" preserveAspectRatio="xMidYMid meet">
+              <rect x="88" y="22" width="124" height="112" rx="10" style="fill:var(--surface);stroke:var(--line)"/>
+              <rect x="104" y="40" width="72" height="7" rx="3.5" style="fill:var(--line)"/>
+              <rect x="104" y="56" width="92" height="7" rx="3.5" style="fill:var(--line)"/>
+              <rect x="100" y="70" width="100" height="14" rx="4" style="fill:var(--spark-soft)"/>
+              <rect x="104" y="74" width="80" height="6" rx="3" style="fill:var(--spark)"/>
+              <rect x="104" y="92" width="84" height="7" rx="3.5" style="fill:var(--line)"/>
+              <rect x="104" y="108" width="60" height="7" rx="3.5" style="fill:var(--line)"/>
+              <circle cx="212" cy="77" r="13" style="fill:var(--accent)"/>
+              <path d="M206 77l4 4 8-8" fill="none" style="stroke:var(--accent-ink)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="case-body">
+            <span class="tag">Product</span>
+            <h3>ContractIQ</h3>
+            <p>AI contract review for real estate and construction. It reads agreements, flags risky clauses and missing terms, and explains them in plain English.</p>
+            <div class="stack"><span>LLMs</span><span>RAG</span><span>Document AI</span></div>
+          </div>
+        </article>
+        <article class="case">
+          <div class="case-art" aria-hidden="true">
+            <svg viewBox="0 0 300 150" preserveAspectRatio="xMidYMid meet">
+              <g style="fill:var(--surface);stroke:var(--line)">
+                <rect x="24" y="56" width="60" height="38" rx="8"/><rect x="120" y="56" width="60" height="38" rx="8"/><rect x="216" y="56" width="60" height="38" rx="8"/>
+              </g>
+              <path d="M84 75h36M180 75h36" style="stroke:var(--accent)" stroke-width="2.5" stroke-dasharray="4 4"/>
+              <circle cx="54" cy="75" r="8" style="fill:var(--spark)"/>
+              <circle cx="150" cy="75" r="8" style="fill:var(--accent)"/>
+              <path d="M238 69l8 6 8-6M238 69h16v12h-16z" fill="none" style="stroke:var(--accent)" stroke-width="2" stroke-linejoin="round"/>
+              <text x="54" y="114" text-anchor="middle" style="fill:var(--muted);font:600 11px var(--mono)">find</text>
+              <text x="150" y="114" text-anchor="middle" style="fill:var(--muted);font:600 11px var(--mono)">research</text>
+              <text x="246" y="114" text-anchor="middle" style="fill:var(--muted);font:600 11px var(--mono)">reach out</text>
+            </svg>
+          </div>
+          <div class="case-body">
+            <span class="tag">In-house system</span>
+            <h3>AI lead generation engine</h3>
+            <p>Finds business owners, researches each website for AI opportunities and writes a personal first email for every one. ConvertWithAI uses it for its own outreach.</p>
+            <div class="stack"><span>Python</span><span>Playwright</span><span>Supabase</span><span>OpenAI</span><span>Brevo</span></div>
+          </div>
+        </article>
+        <article class="case">
+          <div class="case-art" aria-hidden="true">
+            <svg viewBox="0 0 300 150" preserveAspectRatio="xMidYMid meet">
+              <g style="fill:var(--surface);stroke:var(--line)">
+                <rect x="40" y="30" width="52" height="66" rx="6"/><rect x="52" y="42" width="52" height="66" rx="6"/><rect x="64" y="54" width="52" height="66" rx="6"/>
+              </g>
+              <path d="M126 87h40" style="stroke:var(--accent)" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M158 80l8 7-8 7" fill="none" style="stroke:var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <rect x="176" y="48" width="96" height="30" rx="10" style="fill:var(--accent-soft)"/>
+              <rect x="186" y="59" width="64" height="7" rx="3.5" style="fill:var(--accent)"/>
+              <rect x="176" y="86" width="80" height="26" rx="10" style="fill:var(--surface);stroke:var(--line)"/>
+              <rect x="186" y="96" width="50" height="6" rx="3" style="fill:var(--line)"/>
+            </svg>
+          </div>
+          <div class="case-body">
+            <span class="tag">Client engineering</span>
+            <h3>Document AI pipelines</h3>
+            <p>RAG pipelines and LLM document processing built as a Forward Deployed Engineer, turning piles of business documents into searchable, structured answers.</p>
+            <div class="stack"><span>FastAPI</span><span>Azure</span><span>AWS</span><span>Claude</span><span>OpenAI</span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="about">
+    <div class="wrap about-grid">
+      <div class="about-copy">
+        <p class="eyebrow">About</p>
+        <h2>Hi, I'm Warda Khan</h2>
+        <p>I'm a <strong>software engineer and AI consultant</strong> in Richmond, Virginia, and I run ConvertWithAI on my own. That means the person on your discovery call is the person who builds your system and answers when you need a change.</p>
+        <p>Before consulting I spent years building backend systems in Java, Python and the cloud. Today I build AI for small businesses that don't have a tech team, and I care about doing it responsibly: your data stays yours, and every system is explained in plain language.</p>
+        <div class="cta-row"><a class="btn btn-primary" href="#contact">Work with me</a></div>
+      </div>
+      <div class="creds">
+        <div class="cred">
+          <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="m8.5 14-1.5 8 5-3 5 3-1.5-8"/></svg></span>
+          <div><b>Microsoft Certified: AI Transformation Leader</b><span>Trained in leading responsible, ethical AI adoption.</span></div>
+        </div>
+        <div class="cred">
+          <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></span>
+          <div><b>Computer engineering degree</b><span>Plus ~3 years of professional backend development.</span></div>
+        </div>
+        <div class="cred">
+          <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg></span>
+          <div><b>Forward Deployed Engineer</b><span>Shipping RAG pipelines, Claude and OpenAI integrations and document AI for clients.</span></div>
+        </div>
+        <div class="cred local">
+          <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></svg></span>
+          <div><b>Free community: AI for Small Scale Businesses</b><span>I run a free Nextdoor group where Richmond business owners learn practical AI together.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="wrap contact-grid">
+      <div class="contact-copy">
+        <p class="eyebrow">Book a free call</p>
+        <h2>Tell me what's eating your week</h2>
+        <p class="sub">Share a little about your business and the task you'd love to hand off. I'll reply within one business day to set up a free 30-minute call.</p>
+        <div class="chans">
+          <div class="chan">
+            <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m2 7 10 6.5L22 7"/></svg></span>
+            <span class="txt"><small>Email</small><a class="val" id="email-val" href="mailto:engr.wardakhan@gmail.com">engr.wardakhan@gmail.com</a></span>
+            <button class="copy" type="button" data-copy="engr.wardakhan@gmail.com" aria-label="Copy email address">Copy</button>
+          </div>
+          <div class="chan">
+            <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg></span>
+            <span class="txt"><small>Phone</small><a class="val" href="tel:+12568369607">(256) 836-9607</a></span>
+            <button class="copy" type="button" data-copy="(256) 836-9607" aria-label="Copy phone number">Copy</button>
+          </div>
+          <div class="chan">
+            <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg></span>
+            <span class="txt"><small>Instagram</small><a class="val" href="https://www.instagram.com/convertwithai11/" target="_blank" rel="noopener">@convertwithai11</a></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-card" id="form-card">
+        <form id="inquiry" novalidate>
+          <h3>Request your free call</h3>
+          <p class="note">Takes about a minute.</p>
+          <input type="text" name="_honey" id="f-honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+          <div class="row">
+            <div class="field" id="g-name">
+              <label for="f-name">Your name</label>
+              <input id="f-name" name="name" type="text" autocomplete="name" required placeholder="Full name" aria-describedby="e-name">
+              <div class="err" id="e-name" role="alert"></div>
+            </div>
+            <div class="field" id="g-email">
+              <label for="f-email">Email</label>
+              <input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required placeholder="you@business.com" aria-describedby="e-email">
+              <div class="err" id="e-email" role="alert"></div>
+            </div>
+          </div>
+          <div class="field">
+            <label for="f-biz">Business <span class="opt">(optional)</span></label>
+            <input id="f-biz" name="business" type="text" autocomplete="organization" placeholder="Business name and what you do">
+          </div>
+          <div class="field">
+            <span id="l-int" style="font-weight:700;font-size:.93rem">I'm interested in</span>
+            <div class="picks" role="group" aria-labelledby="l-int">
+              <label class="pick"><input type="checkbox" id="p1" value="Workflows & automation"><span>Automation</span></label>
+              <label class="pick"><input type="checkbox" id="p2" value="AI agents / voice agents"><span>AI agents</span></label>
+              <label class="pick"><input type="checkbox" id="p3" value="Document assistant"><span>Document assistant</span></label>
+              <label class="pick"><input type="checkbox" id="p4" value="AI content / avatars"><span>Content &amp; avatars</span></label>
+              <label class="pick"><input type="checkbox" id="p5" value="Team training"><span>Training</span></label>
+              <label class="pick"><input type="checkbox" id="p6" value="Not sure yet"><span>Not sure yet</span></label>
+            </div>
+          </div>
+          <div class="field" id="g-msg">
+            <label for="f-msg">What would you like to hand off?</label>
+            <textarea id="f-msg" name="message" required placeholder="e.g. I spend hours every week answering the same customer questions." aria-describedby="e-msg"></textarea>
+            <div class="err" id="e-msg" role="alert"></div>
+          </div>
+          <button class="btn btn-primary" type="submit" style="width:100%">Request my free call</button>
+        </form>
+
+        <div class="sent" id="sent" role="status" aria-live="polite" tabindex="-1">
+          <h3 id="sent-title">Almost done</h3>
+          <p id="sent-copy">Tap <b>Open in email app</b> to send this to engr.wardakhan@gmail.com, or copy it into any email. I'll reply within one business day.</p>
+          <pre id="sent-text"></pre>
+          <div class="acts">
+            <a class="btn btn-primary btn-sm" id="mail-msg" href="#">Open in email app</a>
+            <button class="btn btn-ghost btn-sm" type="button" id="copy-msg">Copy message</button>
+            <button class="btn btn-ghost btn-sm" type="button" id="edit-msg">Edit message</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <a class="brand" href="#home" aria-label="ConvertWithAI, back to top">
+      <svg class="mark" aria-hidden="true"><use href="#mark"/></svg>
+      <span class="word">Convert<b>With</b>AI</span>
+    </a>
+    <div class="links">
+      <a href="#services">Services</a><a href="#how">How it works</a><a href="#work">Work</a><a href="#about">About</a><a href="#contact">Contact</a>
+    </div>
+    <p>&copy; 2026 ConvertWithAI · Richmond, Virginia · Serving small businesses across the US</p>
+  </div>
+</footer>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"ConvertWithAI","url":"https://convertwithai.tech/","description":"AI workflows, AI agents, document assistants and AI training for US small businesses.","founder":{"@type":"Person","name":"Warda Khan"},"email":"engr.wardakhan@gmail.com","telephone":"+1-256-836-9607","areaServed":"US","address":{"@type":"PostalAddress","addressLocality":"Richmond","addressRegion":"VA","addressCountry":"US"}}</script>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var $ = function(s,r){return (r||document).querySelector(s)};
+  var $$ = function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+  var EMAIL = 'engr.wardakhan@gmail.com';
+
+  var header = $('.site-header');
+  function onScroll(){ header.classList.toggle('scrolled', (window.scrollY||0) > 8); }
+  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+  var links = $$('.nav a');
+  if('IntersectionObserver' in window){
+    var spy = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ links.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id); }); } }); }, {rootMargin:'-45% 0px -50% 0px'});
+    ['home','services','how','work','about','contact'].forEach(function(id){ var el = document.getElementById(id); if(el) spy.observe(el); });
+  }
+  var burger = $('#burger'), nav = $('#nav');
+  function closeNav(){ nav.classList.remove('open'); burger.setAttribute('aria-expanded','false'); }
+  burger.addEventListener('click', function(){ var o = nav.classList.toggle('open'); burger.setAttribute('aria-expanded', o ? 'true' : 'false'); });
+  links.forEach(function(a){ a.addEventListener('click', closeNav); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeNav(); });
+  document.addEventListener('click', function(e){ if(!nav.contains(e.target) && !burger.contains(e.target)) closeNav(); });
+
+  var FLOWS = [
+    {name:'Real estate', before:['Copy web leads into the CRM','Text every lead back by hand','Answer the same listing questions','Chase signatures and documents'],
+     after:[['Capture','Leads from Zillow, site and forms land in the CRM'],['Reply','AI texts back in seconds and qualifies the buyer'],['Answer','Listing assistant answers questions 24/7'],['Follow up','Reminders for missing documents go out automatically']],
+     human:'<b>You step in for</b> showings, negotiations and closing.'},
+    {name:'Contractor', before:['Miss calls while on a job','Write every estimate from scratch','Re-type job notes into invoices','Remind clients to pay'],
+     after:[['Answer','Voice agent picks up and books site visits'],['Draft','AI drafts estimates from your photos and notes'],['Invoice','Job notes become invoices without retyping'],['Collect','Friendly payment reminders send themselves']],
+     human:'<b>You step in for</b> pricing calls and the work itself.'},
+    {name:'Salon & spa', before:['Answer DMs about prices and openings','Confirm appointments one by one','Fill last-minute cancellations','Post on Instagram when you remember'],
+     after:[['Reply','AI answers DMs with prices and open slots'],['Confirm','Bookings confirmed and reminded automatically'],['Refill','Cancellations offered to your waitlist'],['Post','A month of posts drafted in your style']],
+     human:'<b>You step in for</b> your clients in the chair.'},
+    {name:'Restaurant', before:['Answer calls about hours and menus','Reply to every review by hand','Update the menu in five places','Plan this week’s promos'],
+     after:[['Answer','Phone and chat agent handles hours, menu and orders'],['Respond','AI drafts on-brand review replies for approval'],['Sync','One menu update reaches every platform'],['Promote','Weekly promo posts drafted and scheduled']],
+     human:'<b>You step in for</b> the food and the guests.'},
+    {name:'Professional services', before:['Search old files for one answer','Write proposals from blank pages','Onboard each client by email','Summarize every meeting'],
+     after:[['Ask','Document assistant answers from your files, with sources'],['Draft','Proposals drafted from your past winners'],['Onboard','Client onboarding runs as one workflow'],['Summarize','Meeting notes and next steps arrive after every call']],
+     human:'<b>You step in for</b> advice and relationships.'}
+  ];
+  var tabs = $('#tabs'), before = $('#before'), after = $('#after'), human = $('#human'), timers = [], current = 0, auto = null, touched = false;
+  FLOWS.forEach(function(f,i){
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'tab'; b.id = 'tab-' + i; b.setAttribute('role','tab'); b.textContent = f.name;
+    b.addEventListener('click', function(){ touched = true; clearInterval(auto); show(i); });
+    tabs.appendChild(b);
+  });
+  function esc(s){ return s.replace(/[&<>]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c]; }); }
+  function show(i){
+    current = i;
+    timers.forEach(clearTimeout); timers = [];
+    $$('.tab', tabs).forEach(function(t,k){ t.setAttribute('aria-selected', k === i ? 'true' : 'false'); });
+    var f = FLOWS[i];
+    before.innerHTML = f.before.map(function(s){ return '<li>' + esc(s) + '</li>'; }).join('');
+    after.innerHTML = f.after.map(function(s){ return '<li><b>' + esc(s[0]) + '</b>' + esc(s[1]) + '</li>'; }).join('');
+    human.innerHTML = f.human;
+    var items = $$('li', after);
+    if(reduce){ items.forEach(function(li){ li.classList.add('on'); }); return; }
+    items.forEach(function(li,k){ timers.push(setTimeout(function(){ li.classList.add('on'); }, 120 + k * 220)); });
+  }
+  show(0);
+  if(!reduce){
+    auto = setInterval(function(){ if(!touched) show((current + 1) % FLOWS.length); }, 7000);
+    $('#conv').addEventListener('mouseenter', function(){ touched = true; clearInterval(auto); });
+  }
+
+  function fallbackCopy(text){
+    var ta = document.createElement('textarea'); ta.value = text; ta.setAttribute('readonly',''); ta.style.cssText = 'position:fixed;opacity:0;top:0';
+    document.body.appendChild(ta); ta.select(); var ok = false;
+    try { ok = document.execCommand('copy'); } catch(e){}
+    document.body.removeChild(ta); return ok;
+  }
+  function copyText(text, btn, label){
+    function done(ok){ btn.textContent = ok ? 'Copied' : 'Press Ctrl+C'; btn.classList.toggle('ok', ok); setTimeout(function(){ btn.textContent = label; btn.classList.remove('ok'); }, 1800); }
+    try {
+      if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(text).then(function(){ done(true); }, function(){ done(fallbackCopy(text)); }); }
+      else done(fallbackCopy(text));
+    } catch(e){ done(fallbackCopy(text)); }
+  }
+  $$('[data-copy]').forEach(function(b){ b.addEventListener('click', function(){ copyText(b.getAttribute('data-copy'), b, 'Copy'); }); });
+
+  var form = $('#inquiry'), card = $('#form-card'), sentText = $('#sent-text'), message = '';
+  var rules = {
+    name:{el:$('#f-name'), g:$('#g-name'), e:$('#e-name'), check:function(v){ return v.trim() ? '' : 'Enter your name.'; }},
+    email:{el:$('#f-email'), g:$('#g-email'), e:$('#e-email'), check:function(v){ v = v.trim(); if(!v) return 'Enter your email.'; return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v) ? '' : 'Enter a valid email, like name@business.com.'; }},
+    msg:{el:$('#f-msg'), g:$('#g-msg'), e:$('#e-msg'), check:function(v){ return v.trim() ? '' : 'Tell me what you would like to hand off.'; }}
+  };
+  function validate(k){ var r = rules[k], m = r.check(r.el.value); r.e.textContent = m; r.g.classList.toggle('bad', !!m); r.el.setAttribute('aria-invalid', m ? 'true' : 'false'); return !m; }
+  Object.keys(rules).forEach(function(k){ rules[k].el.addEventListener('input', function(){ if(rules[k].g.classList.contains('bad')) validate(k); }); });
+
+  form.addEventListener('submit', function(ev){
+    ev.preventDefault();
+    var first = null;
+    Object.keys(rules).forEach(function(k){ if(!validate(k) && !first) first = rules[k].el; });
+    if(first){ first.focus(); return; }
+    if($('#f-honey').value) return;
+    var name = rules.name.el.value.trim(), email = rules.email.el.value.trim(), biz = $('#f-biz').value.trim();
+    var picks = $$('.pick input:checked').map(function(i){ return i.value; });
+    var subject = 'Free call request from ' + name + (biz ? ' (' + biz + ')' : '');
+    var body = rules.msg.el.value.trim() + '\n\n' + (picks.length ? 'Interested in: ' + picks.join(', ') + '\n' : '') + 'Name: ' + name + '\n' + (biz ? 'Business: ' + biz + '\n' : '') + 'Email: ' + email;
+    message = 'Subject: ' + subject + '\n\n' + body;
+    $('#mail-msg').href = 'mailto:' + EMAIL + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    sentText.textContent = message;
+    card.classList.add('done');
+    $('#sent').focus({preventScroll:true});
+  });
+  $('#copy-msg').addEventListener('click', function(){ copyText(message, this, 'Copy message'); });
+  $('#edit-msg').addEventListener('click', function(){ card.classList.remove('done'); rules.msg.el.focus(); });
+})();
+</script>
+
+</body>
+</html>
